@@ -12,9 +12,6 @@ public class Rotator : MonoBehaviour
     void Update()
     {
         transform.rotation *= Quaternion.AngleAxis(rate * Time.deltaTime, transform.up) ;
-        if (Input.GetKey(KeyCode.W)) 
-        {
-            transform.position += transform.forward * Time.deltaTime * speed;
-        }
+        
     }
 }

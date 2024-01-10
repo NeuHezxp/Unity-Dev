@@ -6,15 +6,20 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PhysicsCharacterController : MonoBehaviour
 {
-
-    Rigidbody rb;
+    [Header("Movement")]
     public Vector3 force = Vector3.zero;
     public float maxForce = 5;
     public float jumpForce = 5;
     Transform view;
+    [Header("Collision")]
+    Rigidbody rb;
+    public float rayLength = 1;
+    public LayerMask groundLayerMask;
+
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked; // cursor dissapears when clicking on the screen
         rb = GetComponent<Rigidbody>();
     }
 
@@ -26,9 +31,10 @@ public class PhysicsCharacterController : MonoBehaviour
         direction.y = Input.GetAxis("Vertical");
         direction.x = Input.GetAxis("Horizontal");
 
-        force = view.rotation * direction * maxForce;
+        Quaternion yrotation = Quaternion.AngleAxis(view.rotation.eulerAngles.y,Vector3.up);
+        force = yrotation * direction * maxForce;
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
@@ -36,5 +42,10 @@ public class PhysicsCharacterController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.AddForce(force, ForceMode.Force);
+    }
+    private bool IsGrounded()
+    {
+        Debug.DrawRay(transform.position,Vector3.down * rayLength, Color.red,1);
+        return Physics.Raycast(transform.position, Vector3.down, rayLength, groundLayerMask);
     }
 }

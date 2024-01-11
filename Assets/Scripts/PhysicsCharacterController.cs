@@ -7,10 +7,11 @@ using UnityEngine;
 public class PhysicsCharacterController : MonoBehaviour
 {
     [Header("Movement")]
+    [SerializeField] private Transform view;
     public Vector3 force = Vector3.zero;
     public float maxForce = 5;
     public float jumpForce = 5;
-    Transform view;
+   // Transform view;
     [Header("Collision")]
     Rigidbody rb;
     public float rayLength = 1;

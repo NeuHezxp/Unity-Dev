@@ -356,6 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c30c2fd3d085c134182ddfaa46605b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 29768361}
   force: {x: 0, y: 0, z: 0}
   maxForce: 5
   jumpForce: 5

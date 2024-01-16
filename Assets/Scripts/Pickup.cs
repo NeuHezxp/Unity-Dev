@@ -4,24 +4,32 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    [SerializeField] GameObject pickupPrefab = null;
-    void Start()
-    {
-        
-    }
+	[SerializeField] GameObject pickupPrefab = null;
 
-    void Update()
-    {
-        
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        print(collision.gameObject.name + " collided with " + gameObject.name);
-    }
-    void OnTriggerEnter(Collider other)
-    {
-        print(other.gameObject.name + " collided with " + gameObject.name);
-        Instantiate(pickupPrefab, transform.position, Quaternion.identity); //quaternion.identity is for no rotation
-        Destroy(gameObject);
-    }
+	void Start()
+	{
+
+	}
+
+	void Update()
+	{
+
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		print(collision.gameObject.name);
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.TryGetComponent<Player>(out Player player))
+		{
+			player.AddPoints(10);
+		}
+
+		Instantiate(pickupPrefab, transform.position, Quaternion.identity);
+		Destroy(gameObject);
+	}
 }
+

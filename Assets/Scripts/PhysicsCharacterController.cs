@@ -2,51 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [RequireComponent(typeof(Rigidbody))]
 public class PhysicsCharacterController : MonoBehaviour
 {
-    [Header("Movement")]
-    [SerializeField] private Transform view;
-    public Vector3 force = Vector3.zero;
-    public float maxForce = 5;
-    public float jumpForce = 5;
-   // Transform view;
-    [Header("Collision")]
-    Rigidbody rb;
-    public float rayLength = 1;
-    public LayerMask groundLayerMask;
+	[Header("Movement")]
+	[SerializeField][Range(1, 10)] float maxForce = 5;
+	[SerializeField][Range(1, 10)] float jumpForce = 5;
+	[SerializeField] Transform view;
+	[Header("Collision")]
+	[SerializeField][Range(0, 5)] float rayLength = 1;
+	[SerializeField] LayerMask groundLayerMask;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked; // cursor dissapears when clicking on the screen
-        rb = GetComponent<Rigidbody>();
-    }
+	Rigidbody rb;
+	Vector3 force = Vector3.zero;
 
-    // Update is called once per frame
-    void Update()
-    {
-        Vector3 direction = Vector3.zero;
+	void Start()
+	{
+		Cursor.lockState = CursorLockMode.Locked;
+		rb = GetComponent<Rigidbody>();
+	}
 
-        direction.y = Input.GetAxis("Vertical");
-        direction.x = Input.GetAxis("Horizontal");
+	void Update()
+	{
+		Vector3 direction = Vector3.zero;
 
-        Quaternion yrotation = Quaternion.AngleAxis(view.rotation.eulerAngles.y,Vector3.up);
-        force = yrotation * direction * maxForce;
+		direction.x = Input.GetAxis("Horizontal");
+		direction.z = Input.GetAxis("Vertical");
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
-    }
-    private void FixedUpdate()
-    {
-        rb.AddForce(force, ForceMode.Force);
-    }
-    private bool IsGrounded()
-    {
-        Debug.DrawRay(transform.position,Vector3.down * rayLength, Color.red,1);
-        return Physics.Raycast(transform.position, Vector3.down, rayLength, groundLayerMask);
-    }
+		Quaternion yrotation = Quaternion.AngleAxis(view.rotation.eulerAngles.y, Vector3.up);
+		force = yrotation * direction * maxForce;
+
+		Debug.DrawRay(transform.position, Vector3.down * rayLength, Color.red);
+		if (Input.GetButtonDown("Jump") && CheckGround())
+		{
+			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+		}
+	}
+
+	private void FixedUpdate()
+	{
+		rb.AddForce(force, ForceMode.Force);
+	}
+
+	private bool CheckGround()
+	{
+		return Physics.Raycast(transform.position, Vector3.down, rayLength, groundLayerMask);
+	}
 }

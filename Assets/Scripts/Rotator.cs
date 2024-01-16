@@ -1,17 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Rotator : MonoBehaviour
 {
-    public float rate;
-    public float speed;
+	[SerializeField][Range(-360, 360)] float angle;
 
-
-    void Update()
-    {
-        transform.rotation *= Quaternion.AngleAxis(rate * Time.deltaTime, transform.up) ;
-        
-    }
+	void Update()
+	{
+		transform.rotation *= Quaternion.AngleAxis(angle * Time.deltaTime, Vector3.up);
+	}
 }

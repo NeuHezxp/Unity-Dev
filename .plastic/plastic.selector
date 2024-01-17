@@ -1,4 +1,0 @@
-repository "Unity Dev@unity_AE50F5FEDC1ECE4447BA@cloud"
-  path "/"
-    br "/main"
-    co "/main"

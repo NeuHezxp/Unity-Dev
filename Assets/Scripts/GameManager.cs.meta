@@ -3,7 +3,14 @@ guid: 153f75cf33172a44498f357a65d26fdc
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - titleUI: {instanceID: 0}
+  - livesUI: {instanceID: 0}
+  - timerUI: {instanceID: 0}
+  - healthUI: {instanceID: 0}
+  - health: {fileID: 11400000, guid: 21f65180d782beb45a9421cfaf34efea, type: 2}
+  - scoreEvent: {fileID: 11400000, guid: 17fa3dfb55531324284004b354ed5a75, type: 2}
+  - gameStartEvent: {fileID: 11400000, guid: 895f7c09c8a6c7e48bca3e35e4d75ca2, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

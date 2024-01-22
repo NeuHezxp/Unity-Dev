@@ -99,8 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b83b54ab6ffb8488959873e76b81b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 120
-  speed: 1
+  angle: 0
 --- !u!114 &2820877042701951033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f7cd6f9877d7f49ab3d44b8a738c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupType: 0
   pickupPrefab: {fileID: 1804206099813350, guid: 4dd02b5f854b6c84990fbeb810abffe4, type: 3}
+  pickupSound: {fileID: 8300000, guid: c204143b8ce0ca4489c60d32b5549ede, type: 3}
 --- !u!135 &4765322471073624031
 SphereCollider:
   m_ObjectHideFlags: 0

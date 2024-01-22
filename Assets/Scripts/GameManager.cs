@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] GameObject titleUI;
+    [SerializeField] GameObject endgameUI;
     [SerializeField] GameObject GameOverUI;
     [SerializeField] TMP_Text livesUI;
     [SerializeField] TMP_Text timerUI;
@@ -69,6 +70,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         GameOverUI.SetActive(false);
+        endgameUI.SetActive(false);
 	}
 
     void Update()
@@ -83,7 +85,8 @@ public class GameManager : Singleton<GameManager>
             case State.START_GAME:
                 titleUI.SetActive(false);
                 GameOverUI.SetActive(false);
-                Timer = 120;
+				endgameUI.SetActive(false);
+				Timer = 120;
                 Lives = 3;
                 health.value = 100;
                 Cursor.lockState = CursorLockMode.Locked;
@@ -94,7 +97,7 @@ public class GameManager : Singleton<GameManager>
                 break;
             case State.PLAY_GAME:
                 Timer = Timer - Time.deltaTime;
-                if (Timer <= 0)
+                if (Timer <= 0 || health.value <= 0)
                 {
 					state = State.GAME_OVER;
 				}
@@ -104,12 +107,21 @@ public class GameManager : Singleton<GameManager>
 				Cursor.lockState = CursorLockMode.None;
 				Cursor.visible = true;
 				break;
-        }
+            case State.END_GAME:
+				endgameUI.SetActive(true);
+				Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
+				break;
+		}
 
         healthUI.value = health.value / 100.0f;
     }
+	public void AddTime(float value)
+	{
+		timer += 5;
+	}
 
-    public void onEndGame()
+	public void onEndGame()
     {
 		state = State.END_GAME;
 	}
@@ -119,7 +131,7 @@ public class GameManager : Singleton<GameManager>
     }
     public void onPlayerDead()
     {
-        state = State.TITLE;
+        state = State.GAME_OVER;
     }
     public void onTimerEnd()
     {

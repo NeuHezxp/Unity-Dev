@@ -45,6 +45,10 @@ public class Player : MonoBehaviour
 	{
 		Score += points;
 	}
+	public void AddHealth(float hp)
+	{
+		health.value += hp;
+	}
 
 	private void OnStartGame()
 	{

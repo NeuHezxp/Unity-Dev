@@ -14,6 +14,10 @@ public class Player : MonoBehaviour
 	[SerializeField] VoidEvent gameStartEvent = default;
 	[SerializeField] VoidEvent PlayerDeadEvent = default;
 
+	//speed boost
+	private float originalSpeed; // To store the original speed
+	private bool isBoosted = false; // To check if currently boosted
+
 	private int score = 0;
 
 	public int Score
@@ -25,6 +29,7 @@ public class Player : MonoBehaviour
 			scoreEvent.RaiseEvent(Score);
 		}
 	}
+
 
 	private void OnEnable()
 	{
@@ -58,4 +63,5 @@ public class Player : MonoBehaviour
         transform.rotation = respawnPoint.transform.rotation;
 		characterController.Reset();
     }
+	
 }

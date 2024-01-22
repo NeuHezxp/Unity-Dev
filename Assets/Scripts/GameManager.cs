@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] GameObject titleUI;
+    [SerializeField] GameObject GameOverUI;
     [SerializeField] TMP_Text livesUI;
     [SerializeField] TMP_Text timerUI;
     [SerializeField] Slider healthUI;
@@ -17,19 +18,23 @@ public class GameManager : Singleton<GameManager>
     [Header("Events")]
     //[SerializeField] IntEvent scoreEvent;
     [SerializeField] VoidEvent gameStartEvent;
+    [SerializeField] VoidEvent TimeEndEvent;
+    [SerializeField] GameObjectEvent speedBoostEvent;
     [SerializeField] GameObjectEvent respawnEvent;
 
-    public enum State
+	public enum State
     {
         TITLE,
         START_GAME,
         PLAY_GAME,
-        GAME_OVER
-    }
+        GAME_OVER,
+		END_GAME
+	}
 
     public State state = State.TITLE;
     public float timer = 0;
     public int lives = 0;
+
 
     public int Lives
     {
@@ -63,7 +68,8 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-    }
+        GameOverUI.SetActive(false);
+	}
 
     void Update()
     {
@@ -76,7 +82,8 @@ public class GameManager : Singleton<GameManager>
                 break;
             case State.START_GAME:
                 titleUI.SetActive(false);
-                Timer = 60;
+                GameOverUI.SetActive(false);
+                Timer = 120;
                 Lives = 3;
                 health.value = 100;
                 Cursor.lockState = CursorLockMode.Locked;
@@ -89,16 +96,23 @@ public class GameManager : Singleton<GameManager>
                 Timer = Timer - Time.deltaTime;
                 if (Timer <= 0)
                 {
-                    state = State.GAME_OVER;
-                }
+					state = State.GAME_OVER;
+				}
                 break;
             case State.GAME_OVER:
-                break;
+				GameOverUI.SetActive(true);
+				Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
+				break;
         }
 
         healthUI.value = health.value / 100.0f;
     }
 
+    public void onEndGame()
+    {
+		state = State.END_GAME;
+	}
     public void OnStartGame()
     {
         state = State.START_GAME;
@@ -107,6 +121,10 @@ public class GameManager : Singleton<GameManager>
     {
         state = State.TITLE;
     }
+    public void onTimerEnd()
+    {
+        state = State.GAME_OVER;
+	}
 
     public void OnAddPoints(int points)
     {

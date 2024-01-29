@@ -7,7 +7,7 @@ using UnityEngine.Splines;
 public class PathFollow : MonoBehaviour
 {
     [SerializeField] SplineContainer splineContainer;
-    [Range(0,40)] public float speed = 1;
+    [Range(0,100)] public float speed = 1;
 
     float tDistance = 0; //distance along spline  (0-1)
 

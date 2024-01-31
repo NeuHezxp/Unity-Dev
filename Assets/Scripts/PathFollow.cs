@@ -9,11 +9,11 @@ public class PathFollow : MonoBehaviour
     [SerializeField] SplineContainer splineContainer;
     [Range(0,100)] public float speed = 1;
 
-    float tDistance = 0; //distance along spline  (0-1)
+	[Range(0, 1)] public float tDistance = 0; // distance along spline (0-1)
 
-    //public float speed { get; set; }
-    //length in world coordinates
-    public float length { get { return splineContainer.CalculateLength(); } }
+	//public float speed { get; set; }
+	//length in world coordinates
+	public float length { get { return splineContainer.CalculateLength(); } }
     //distance in world
     public float distance
     {

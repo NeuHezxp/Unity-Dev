@@ -7,22 +7,26 @@ public class Damage : MonoBehaviour
 {
     [SerializeField] float damage = 1;
     [SerializeField] bool oneTime = true;
+
     private void OnTriggerEnter(Collider other)
     {
-        if(oneTime && other.gameObject.TryGetComponent<Player>(out Player player))
+        if (oneTime && other.gameObject.TryGetComponent<IDamagable>(out IDamagable damagable))
         {
-            player.Damage(damage);
+            damagable.ApplyDamage(damage);
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
-        if (!oneTime && other.gameObject.TryGetComponent<Player>(out Player player))
+        if (!oneTime && other.gameObject.TryGetComponent<IDamagable>(out IDamagable damagable))
         {
-            player.Damage(damage * Time.deltaTime);
+            damagable.ApplyDamage(damage * Time.deltaTime);
         }
     }
 }
-public interface IDamageable
+
+
+public interface IDamagable
 {
-    void TakeDamage(float damage);
+    void ApplyDamage(float damage);
 }

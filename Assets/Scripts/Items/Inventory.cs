@@ -20,6 +20,16 @@ public class Inventory : MonoBehaviour
     {
         currentItem?.StopUse();
     }
+    public void nextItem()
+    {
+        Debug.Log("switching weapons");
+        currentItem = items[1];
+        currentItem.Equip();
+    }
+    public void previousItem()
+    {
+        Debug.Log("switching weapons back");
+        currentItem = items[0];
+    }
 
-   
 }

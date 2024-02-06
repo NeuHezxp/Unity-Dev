@@ -16,5 +16,8 @@ public class PlayerShip : MonoBehaviour
         {
             inventory.stopUse();
         }
+
+        if (Input.GetKeyDown(KeyCode.Tab)) inventory.nextItem();
+        if (Input.GetKeyDown(KeyCode.LeftShift)) inventory.previousItem();
     }
 }

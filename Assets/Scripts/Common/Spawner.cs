@@ -5,6 +5,8 @@ using UnityEngine;
 
 public abstract class Spawner : MonoBehaviour, IInteractable
 {
+	[SerializeField] Action action;
+
 	[SerializeField] GameObject[] spawnPrefabs;
 	[SerializeField] Transform parentTransform = null;
 
@@ -40,6 +42,12 @@ public abstract class Spawner : MonoBehaviour, IInteractable
 		if (active)
 		{
 			SetActive();
+		}
+		if (action != null)
+		{
+			action.onEnter += OnInteractStart;
+			action.onExit += OnInteractEnd;
+			action.onStay += OnInteractActive;
 		}
 	}
 
@@ -105,13 +113,18 @@ public abstract class Spawner : MonoBehaviour, IInteractable
 
 	}
 
-	public void OnEnter()
-	{
+    public void OnInteractStart(GameObject gameObject) //start interaction
+    {
 		SetActive();
-	}
+    }
 
-	public void OnExit()
-	{
-		SetInactive();
-	}
+    public void OnInteractActive(GameObject gameObject) // do interaciton
+    {
+        
+    }
+
+    public void OnInteractEnd(GameObject gameObject)
+    {
+        SetInactive();
+    }
 }

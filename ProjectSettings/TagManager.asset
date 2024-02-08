@@ -14,9 +14,9 @@ TagManager:
   - Clouds
   - Distant Objects
   - Player
-  - 
-  - 
-  - 
+  - Enemy
+  - PlayerWeapon
+  - EnemyWeapon
   - 
   - 
   - 

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31e1d755aaa16b04194dfc8fe8bd9e10, type: 3}
-  m_Name: RocketLauncher
+  m_Name: EnemyRocketLauncher
   m_EditorClassIdentifier: 
   id: 
   description: 
   icon: {fileID: 0}
   allowMultiple: 0
   equipable: 0
-  usageType: 1
+  usageType: 0
   animTriggerName: 
   animEquipName: 
   rigLayerWeight: []
@@ -26,4 +26,4 @@ MonoBehaviour:
   fireRate: 3
   spread: {x: 0.1, y: 0.1, z: 0.1}
   rounds: 0
-  ammoPrefab: {fileID: 3605109211063850515, guid: b7931206169548745aaf31fc961a3d57, type: 3}
+  ammoPrefab: {fileID: 3605109211063850515, guid: b07ae3c94e68a724fb5f32d650781326, type: 3}

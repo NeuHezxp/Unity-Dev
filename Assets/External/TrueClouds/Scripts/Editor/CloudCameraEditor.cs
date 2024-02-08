@@ -402,7 +402,7 @@ namespace TrueClouds
                 EditorGUI.indentLevel++;
                 if (foldout)
                 {
-                    contentsDrawer();
+                   // contentsDrawer();
                 }
             }
 

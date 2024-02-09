@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerShip : MonoBehaviour, IDamagable
 {
-
+	[SerializeField]private PathFollow pathFolower;
 	[SerializeField]GameObject destroyPrefab;
 	[SerializeField] GameObject hitPrefab;
 
@@ -40,6 +40,9 @@ public class PlayerShip : MonoBehaviour, IDamagable
 
 		if (Input.GetKeyDown(KeyCode.Tab)) inventory.nextItem();
 		if (Input.GetKeyDown(KeyCode.LeftShift)) inventory.previousItem();
+
+		pathFolower.speed = (Input.GetKey(KeyCode.LeftShift) ? 10 : 0);
+		//if (Input.GetKeyDown(KeyCode.W)) pathFolower.speed = 5;
 	}
 
 
@@ -62,5 +65,10 @@ public class PlayerShip : MonoBehaviour, IDamagable
 				Instantiate(destroyPrefab, gameObject.transform.position, Quaternion.identity);
 			}
 		}
+	}
+	public void applyHealth(float health)
+	{
+		this.health.value += health;
+		this.health.value = Mathf.Clamp(this.health.value, 0, 100);
 	}
 }

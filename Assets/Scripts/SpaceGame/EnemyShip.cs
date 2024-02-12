@@ -7,8 +7,9 @@ public class EnemyShip : Enemy
 	[SerializeField] private Weapon weapon;
 	[SerializeField] private float minFireRate;
 	[SerializeField] private float maxFireRate;
+	
 
-	private void Start()
+    private void Start()
 	{
 		weapon.Equip();
 		StartCoroutine(FireTimerCR());

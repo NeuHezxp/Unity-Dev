@@ -5,8 +5,9 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
 	[SerializeField] List<Animator> animators; // List of animators
+    [SerializeField] AudioSource audioSource;
 
-	private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
 	{
 		// Iterate through all animators and set the trigger
 		foreach (Animator animator in animators)
@@ -14,7 +15,8 @@ public class Platform : MonoBehaviour
 			if (animator != null)
 			{
 				animator.SetTrigger("Start");
-			}
+				audioSource.PlayOneShot(audioSource.clip);
+            }
 		}
 	}
 }

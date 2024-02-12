@@ -12,7 +12,8 @@ public class HealthPickup : MonoBehaviour
 		if (other.gameObject.TryGetComponent(out PlayerShip player))
 		{
 			player.applyHealth(health);
-			if(pickupPrefab != null) Instantiate(pickupPrefab, transform.position, Quaternion.identity);
+			Debug.Log("Health picked up");
+            if (pickupPrefab != null) Instantiate(pickupPrefab, transform.position, Quaternion.identity);
 			Destroy(gameObject);
 		}
 	}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LifeSpan : MonoBehaviour
 {
-    [SerializeField, Range(0, 10)] float lifespan = 1;
+    [SerializeField, Range(0, 30)] float lifespan = 1;
 
     // Start is called before the first frame update
     void Start()

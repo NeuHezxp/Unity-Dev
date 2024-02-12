@@ -21,10 +21,12 @@ public class GameManager : Singleton<GameManager>
     //[SerializeField] IntEvent scoreEvent;
     [SerializeField] VoidEvent gameStartEvent;
     [SerializeField] VoidEvent TimeEndEvent;
-    [SerializeField] GameObjectEvent speedBoostEvent;
+    //[SerializeField] GameObjectEvent speedBoostEvent;
     [SerializeField] GameObjectEvent respawnEvent;
+    [SerializeField] private PathFollow pathFolower;
 
-	public enum State
+
+    public enum State
     {
         TITLE,
         START_GAME,
@@ -80,15 +82,18 @@ public class GameManager : Singleton<GameManager>
         {
             case State.TITLE:
                 titleUI.SetActive(true);
+                PauseAllAnimations();
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
+                pathFolower.speed = 0;
                 break;
             case State.START_GAME:
                 titleUI.SetActive(false);
                 GameOverUI.SetActive(false);
 				endgameUI.SetActive(false);
-				Timer = 120;
-                Lives = 3;
+                ResumeAllAnimations();
+                Timer = 120;
+                Lives = 1;
                 health.value = 100;
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
@@ -122,7 +127,27 @@ public class GameManager : Singleton<GameManager>
 		timer += 5;
 	}
 
-	public void onEndGame()
+    void PauseAllAnimations()
+    {
+        Animator[] animators = FindObjectsOfType<Animator>();
+        foreach (Animator animator in animators)
+        {
+            animator.speed = 0;
+        }
+    }
+
+    void ResumeAllAnimations()
+    {
+        Animator[] animators = FindObjectsOfType<Animator>();
+        foreach (Animator animator in animators)
+        {
+            animator.speed = 1;
+        }
+    }
+
+
+
+    public void onEndGame()
     {
 		state = State.END_GAME;
 	}

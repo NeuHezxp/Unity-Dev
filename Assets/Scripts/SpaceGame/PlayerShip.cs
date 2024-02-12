@@ -28,11 +28,11 @@ public class PlayerShip : MonoBehaviour, IDamagable
 
 	void Update()
 	{
-		if (Input.GetButtonDown("Fire1"))
+		if (Input.GetButtonDown("Fire2"))
 		{
 			inventory.Use();
 		}
-		if (Input.GetButtonUp("Fire1"))
+		if (Input.GetButtonUp("Fire2"))
 		{
 			inventory.stopUse();
 		}
@@ -41,7 +41,7 @@ public class PlayerShip : MonoBehaviour, IDamagable
 		if (Input.GetKeyDown(KeyCode.Tab)) inventory.nextItem();
 		if (Input.GetKeyDown(KeyCode.LeftShift)) inventory.previousItem();
 
-		pathFolower.speed = (Input.GetKey(KeyCode.LeftShift) ? 10 : 0);
+		pathFolower.speed = (Input.GetKey(KeyCode.Space) ? 100 : 80);
 		//if (Input.GetKeyDown(KeyCode.W)) pathFolower.speed = 5;
 	}
 

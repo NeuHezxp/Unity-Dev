@@ -10,11 +10,13 @@ public class Enemy : MonoBehaviour, IDamagable
 
 	[SerializeField] protected GameObject hitPrefab;
 	[SerializeField] protected GameObject destroyPrefab;
+    [SerializeField] protected AudioSource destroySound;
 
-	public void ApplyDamage(float damage)
+    public void ApplyDamage(float damage)
 	{
 		health -= damage;
-		if (health <= 0)
+        destroySound.PlayOneShot(destroySound.clip);
+        if (health <= 0)
 		{
 			scoreEvent?.RaiseEvent(points);
 			if (destroyPrefab != null)
@@ -28,7 +30,8 @@ public class Enemy : MonoBehaviour, IDamagable
 			if (hitPrefab != null)
 			{
 				Instantiate(destroyPrefab, gameObject.transform.position, Quaternion.identity);
-			}
+				
+            }
 		}
 	}
 }

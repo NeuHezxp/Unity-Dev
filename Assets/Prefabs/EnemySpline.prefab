@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4cd14faa143b114ca1f2a82ba7d803e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifespan: 10
+  lifespan: 30
 --- !u!1 &5897403364513690421
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,6 +433,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5376501628273953719, guid: ded92bffdbffb794aa3304b5cf0497df, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1012529583168713117}
+    - targetCorrespondingSourceObject: {fileID: 5376501628273953719, guid: ded92bffdbffb794aa3304b5cf0497df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 812578534375292702}
+    - targetCorrespondingSourceObject: {fileID: 5376501628273953719, guid: ded92bffdbffb794aa3304b5cf0497df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4174385182959821538}
   m_SourcePrefab: {fileID: 100100000, guid: ded92bffdbffb794aa3304b5cf0497df, type: 3}
 --- !u!1 &69302808205940579 stripped
 GameObject:
@@ -451,6 +457,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6d6ef27ce0f75c4c8000d500f20a478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &812578534375292702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69302808205940579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb150b31d4847604ba75f23497805bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 30
+  points: 0
+  scoreEvent: {fileID: 11400000, guid: 17fa3dfb55531324284004b354ed5a75, type: 2}
+  hitPrefab: {fileID: 0}
+  destroyPrefab: {fileID: 1290715649332758, guid: 587eaecaa621be74486f351c78b4f0a8, type: 3}
+  destroySound: {fileID: 0}
+  weapon: {fileID: 4174385182959821538}
+  minFireRate: 2
+  maxFireRate: 5
+--- !u!114 &4174385182959821538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69302808205940579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a215359cf0f5e48a1c9e9a904708b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: b2375d1da8b38d2498a1bccd7f8f2d48, type: 2}
+  animator: {fileID: 0}
+  ammoTransform: {fileID: 0}
 --- !u!4 &4525730442080139150 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8405268230012332890, guid: ded92bffdbffb794aa3304b5cf0497df, type: 3}
